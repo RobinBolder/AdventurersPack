@@ -40,7 +40,7 @@ public class DiceRollCmd {
                         rollOther(sc);
                         break;
                     case 3:
-                        System.out.println("Sorry, this functionality is not yet added :(");
+                        rollAttack(sc);
                         break;
                     case 4:
                         System.out.println("Goodbye");
@@ -254,6 +254,102 @@ public class DiceRollCmd {
                 else {
                     System.out.println("A dice should have at least 2 sides");
                     throw new IllegalArgumentException();
+                }
+            } catch (Exception ex) {
+                System.out.println("That was not a valid answer, try again!");
+            }
+        } while (true);
+    }
+
+    /**
+     * Sub-menu for complete attack flow
+     *
+     * @param sc Scanner class for reading values from the input
+     */
+    private static void rollAttack(Scanner sc) {
+        System.out.println("Making a weapon attack");
+        System.out.println("What is your attack modifier?");
+        int attackModifier = getModifier(sc);
+        DiceResult acResult = rollAc(sc);
+        int totalAc = acResult.getTotal() + attackModifier;
+        System.out.println(acResult.getText());
+        System.out.println("With a modifier of " + attackModifier + " the total result is: " + totalAc);
+        //TODO add functionality for rolling additional modifiers (bless, bardic inspiration, etc)
+        System.out.println("Did that hit? (y/n)");
+        if (getYN(sc)) {
+            System.out.println("NICE!");
+            Dice damageDice = getDiceType(sc);
+            int number = getNumber(sc);
+            System.out.println("What is your damage modifier?");
+            int damageModifier = getModifier(sc);
+            // TODO add functionality for rolling multiple types of damage dice (sneak attack, etc)
+            DiceResult damageResult = damageDice.rollMultiple(number);
+            int totalDamage = damageResult.getTotal() + damageModifier;
+            System.out.println(damageResult.getText());
+            System.out.println("With a modifier of " + damageModifier + " you did a total damage of: " + totalDamage);
+        }
+
+    }
+
+    /**
+     * Prompt to get the dice roll modifiers
+     *
+     * @param sc Scanner class for reading values from the input
+     * @return integer value of the modifier
+     */
+    private static int getModifier(Scanner sc) {
+        do {
+            try {
+                return sc.nextInt();
+            } catch (Exception ex) {
+                System.out.println("That was not a valid answer, try again!");
+            }
+        } while (true);
+    }
+
+    /**
+     * Prompt for determining if the attack roll should be made with advantage or disadvantage
+     *
+     * @param sc Scanner class for reading values from the input
+     * @return DiceResult containing the result of the attack roll
+     */
+    private static DiceResult rollAc(Scanner sc) {
+        Dice d20 = new Dice(20);
+        char response;
+        System.out.println("is it a (n)ormal roll, or do you have (a)dvantage or (d)isadvantage?");
+        do {
+            try {
+                response = sc.next().charAt(0);
+                switch (response) {
+                    case 'a': return d20.rollAdv();
+                    case 'd': return d20.rollDis();
+                    case 'n': return d20.roll();
+                    default: throw new IllegalArgumentException();
+                }
+            } catch (Exception ex) {
+                System.out.println("That was not a valid answer, try again!");
+            }
+        } while (true);
+    }
+
+    /**
+     * Prompt for getting yes/no answers
+     *
+     * @param sc Scanner class for reading values from the input
+     * @return boolean: true for yes; false for no
+     */
+    private static boolean getYN(Scanner sc) {
+        char response;
+        do {
+            try {
+                response = sc.next().charAt(0);
+                switch (response) {
+                    case 'y':
+                        return true;
+                    case 'n':
+                        return false;
+                    default:
+                        throw new IllegalArgumentException();
                 }
             } catch (Exception ex) {
                 System.out.println("That was not a valid answer, try again!");
