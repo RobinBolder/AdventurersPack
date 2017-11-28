@@ -271,19 +271,25 @@ public class DiceRollCmd {
         System.out.println("What is your attack modifier?");
         int attackModifier = getModifier(sc);
         DiceResult acResult = rollAc(sc);
+        System.out.println("Do you want to add any additional dice to this roll? (y/n)");
+        if (getYN(sc)) {
+            acResult = rollAdditional(sc,acResult);
+        }
         int totalAc = acResult.getTotal() + attackModifier;
         System.out.println(acResult.getText());
         System.out.println("With a modifier of " + attackModifier + " the total result is: " + totalAc);
-        //TODO add functionality for rolling additional modifiers (bless, bardic inspiration, etc)
         System.out.println("Did that hit? (y/n)");
         if (getYN(sc)) {
             System.out.println("NICE!");
             Dice damageDice = getDiceType(sc);
             int number = getNumber(sc);
+            DiceResult damageResult = damageDice.rollMultiple(number);
+            System.out.println("Do you want to add any additional dice to this roll? (y/n)");
+            if (getYN(sc)) {
+                damageResult = rollAdditional(sc,damageResult);
+            }
             System.out.println("What is your damage modifier?");
             int damageModifier = getModifier(sc);
-            // TODO add functionality for rolling multiple types of damage dice (sneak attack, etc)
-            DiceResult damageResult = damageDice.rollMultiple(number);
             int totalDamage = damageResult.getTotal() + damageModifier;
             System.out.println(damageResult.getText());
             System.out.println("With a modifier of " + damageModifier + " you did a total damage of: " + totalDamage);
@@ -355,6 +361,26 @@ public class DiceRollCmd {
                 System.out.println("That was not a valid answer, try again!");
             }
         } while (true);
+    }
+
+    /**
+     * Add additional dice results to any roll
+     *
+     * @param sc Scanner class for reading values from the input
+     * @return DiceResult containing the values of all additional rolls
+     */
+    private static DiceResult rollAdditional(Scanner sc, DiceResult original) {
+        boolean answer;
+        do {
+            Dice tempDice = getDiceType(sc);
+            int tempNumber = getNumber(sc);
+            DiceResult tempResult = tempDice.rollMultiple(tempNumber);
+            original.add(tempResult);
+
+            System.out.println("Do you want to add any additional dice to this roll? (y/n)");
+            answer = getYN(sc);
+        } while (answer);
+        return original;
     }
 
 }
