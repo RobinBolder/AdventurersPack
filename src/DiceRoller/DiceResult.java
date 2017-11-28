@@ -55,6 +55,6 @@ public class DiceResult {
      */
     public void add(DiceResult additionalResult) {
         this.total += additionalResult.getTotal();
-        this.text += "/n" + additionalResult.getText();
+        this.text += "\n" + additionalResult.getText();
     }
 }
