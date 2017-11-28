@@ -89,5 +89,12 @@ class DiceResultTest {
         assertEquals(sampleText,testResult.getText(),"The text should be overwritten by the new text");
     }
 
+    @Test
+    void setTotal() {
+        int newTotal = 110;
+        testResult.setTotal(newTotal);
+        assertEquals(newTotal,testResult.getTotal(),"The total should be overwritten by the new total");
+    }
+
 
 }

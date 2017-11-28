@@ -10,7 +10,7 @@ import java.util.List;
  * a text string telling the user what happened.
  *
  * @author Robin Bolder
- * @version 1.1
+ * @version 1.2
  */
 public class DiceResult {
     private String text;
@@ -88,10 +88,19 @@ public class DiceResult {
 
     /**
      * Overwrite the original text string with new text
-     * @param text String containing the new text
+     * @param newText String containing the new text
      * @since 1.1
      */
-    public void setText(String text) {
-        this.text = text;
+    public void setText(String newText) {
+        this.text = newText;
+    }
+
+    /**
+     * Overwrite the total value
+     * @param newTotal integer containing the new total
+     * @since 1.2
+     */
+    public void setTotal(int newTotal) {
+        this.total = newTotal;
     }
 }
