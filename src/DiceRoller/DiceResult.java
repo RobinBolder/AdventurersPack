@@ -26,6 +26,14 @@ public class DiceResult {
     }
 
     /**
+     * Additional constructor for creating empty DiceResult objects
+     */
+    public DiceResult() {
+        this.total = 0;
+        this.text = "";
+    }
+
+    /**
      * @return Integer value of the total dice result
      * @since 1.0
      */
@@ -39,5 +47,14 @@ public class DiceResult {
      */
     public String getText() {
         return text;
+    }
+
+    /**
+     * Add the values of another dice roll to this object
+     * @param additionalResult DiceResult object of which the values will be added to the existing one
+     */
+    public void add(DiceResult additionalResult) {
+        this.total += additionalResult.getTotal();
+        this.text += "/n" + additionalResult.getText();
     }
 }
