@@ -59,11 +59,44 @@ class DiceTest {
     }
 
     @Test
-    void rollAdv() {
+    void rollAdv1() {
+        for (int i = 0; i < 10; i++) {
+            DiceResult test = d20.rollAdv();
+            List testList = test.getAllValues();
+            int result1 = (int) testList.get(0);
+            int result2 = (int) testList.get(1);
+            assertTrue((result1 >= result2),"Advantage incorrectly applied");
+        }
+    }
+    @Test
+    void rollAdv2() {
+        for (int i = 0; i < 10; i++) {
+            DiceResult test = d20.rollAdv();
+            List testList = test.getAllValues();
+            int result1 = (int) testList.get(0);
+            assertTrue((result1 == test.getTotal()),"Advantage incorrectly applied");
+        }
     }
 
+
     @Test
-    void rollDis() {
+    void rollDis1() {
+        for (int i = 0; i < 10; i++) {
+            DiceResult test = d20.rollDis();
+            List testList = test.getAllValues();
+            int result1 = (int) testList.get(0);
+            int result2 = (int) testList.get(1);
+            assertTrue((result1 <= result2),"Disadvantage incorrectly applied");
+        }
+    }
+    @Test
+    void rollDis2() {
+        for (int i = 0; i < 10; i++) {
+            DiceResult test = d20.rollDis();
+            List testList = test.getAllValues();
+            int result1 = (int) testList.get(0);
+            assertTrue((result1 == test.getTotal()),"Disadvantage incorrectly applied");
+        }
     }
 
     @Test
