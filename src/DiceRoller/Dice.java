@@ -117,15 +117,18 @@ public class Dice {
 
         StringBuilder sb = new StringBuilder();
         DiceResult tmp;
-        int total = 0;
+        DiceResult total = new DiceResult();
+        //int total = 0;
         sb.append("You rolled " + n + " d" + sides + "'s\n");
         for (int i = 0; i < n; i++) {
             tmp = roll();
-            total += tmp.getTotal();
+            total.add(tmp);
+            //total += tmp.getTotal();
             sb.append("You rolled a " + tmp.getTotal() + " on dice number " + (i+1) + "\n");
         }
-        sb.append("Your total result is " + total);
-        String text = sb.toString();
-        return new DiceResult(total,text);
+        sb.append("Your total result is " + total.getTotal());
+        //String text = sb.toString();
+        total.setText(sb.toString());
+        return total;//new DiceResult(total,text);
     }
 }
