@@ -10,7 +10,7 @@ import java.util.List;
  * a text string telling the user what happened.
  *
  * @author Robin Bolder
- * @version 1.2
+ * @version 1.3
  */
 public class DiceResult {
     private String text;
@@ -102,5 +102,15 @@ public class DiceResult {
      */
     public void setTotal(int newTotal) {
         this.total = newTotal;
+    }
+
+    /**
+     * Adding the value of a modifier to the total and the text
+     * @param modifier integer containing the modifier value
+     * @since 1.3
+     */
+    public void addModifier(int modifier) {
+        this.total += modifier;
+        this.text += "\nWith a modifier of " + modifier + " the new total became" + total;
     }
 }

@@ -9,13 +9,17 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DiceResultTest {
+    private int total;
+    private String text;
     private DiceResult testResult;
     private DiceResult testResultEmpty;
 
     @BeforeEach
     void setUp() {
+        total = 4;
+        text = "You rolled a 4";
         testResultEmpty = new DiceResult();
-        testResult = new DiceResult(4,"You rolled a 4");
+        testResult = new DiceResult(total,text);
     }
 
     @Test
@@ -94,6 +98,13 @@ class DiceResultTest {
         int newTotal = 110;
         testResult.setTotal(newTotal);
         assertEquals(newTotal,testResult.getTotal(),"The total should be overwritten by the new total");
+    }
+
+    @Test
+    void addModifier1() {
+        int modifier = 7;
+        testResult.addModifier(modifier);
+        assertEquals(total + modifier, testResult.getTotal(),"The totals don't match");
     }
 
 
