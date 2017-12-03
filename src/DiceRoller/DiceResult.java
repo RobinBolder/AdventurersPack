@@ -111,6 +111,6 @@ public class DiceResult {
      */
     public void addModifier(int modifier) {
         this.total += modifier;
-        this.text += "\nWith a modifier of " + modifier + " the new total became" + total;
+        this.text += "\nWith a modifier of " + modifier + " the new total became " + total;
     }
 }

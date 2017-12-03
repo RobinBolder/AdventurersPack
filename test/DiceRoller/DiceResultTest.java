@@ -107,5 +107,19 @@ class DiceResultTest {
         assertEquals(total + modifier, testResult.getTotal(),"The totals don't match");
     }
 
+    @Test
+    void addModifier2() {
+        int modifier = 0;
+        testResult.addModifier(modifier);
+        assertEquals(total + modifier, testResult.getTotal(),"The totals don't match");
+    }
+
+    @Test
+    void addModifier3() {
+        int modifier = -3;
+        testResult.addModifier(modifier);
+        assertEquals(total + modifier, testResult.getTotal(),"The totals don't match");
+    }
+
 
 }
