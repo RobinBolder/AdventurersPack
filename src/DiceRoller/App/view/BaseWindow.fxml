@@ -30,8 +30,8 @@
             <Label alignment="CENTER" text="Roll" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Label alignment="CENTER" text="Modifier" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#handleD20" text="d20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="d4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="d4Modifier" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#handleD4" text="d4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="d4Modifier" alignment="CENTER" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin>
@@ -39,7 +39,7 @@
                   <Insets left="5.0" right="5.0" />
                </padding>
             </TextField>
-            <TextField fx:id="d20Modifier" alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <TextField fx:id="d20Modifier" alignment="CENTER" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
@@ -47,7 +47,7 @@
                   <Insets left="5.0" right="5.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="d4Number" GridPane.rowIndex="2">
+            <TextField fx:id="d4Number" alignment="CENTER" promptText="Number of dice" text="1" GridPane.rowIndex="2">
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>

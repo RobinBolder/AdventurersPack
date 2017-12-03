@@ -6,8 +6,6 @@ import DiceRoller.Dice;
 import DiceRoller.DiceResult;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
 
 public class BaseWindowController {
@@ -29,6 +27,10 @@ public class BaseWindowController {
 
     private ToggleGroup d20Radios;
 
+    private DiceRollApp diceRollApp;
+    private Dice d20 = new Dice(20);
+    private Dice d4 = new Dice(4);
+
     @FXML
     private void initialize() {
         d20Radios = new ToggleGroup();
@@ -42,7 +44,7 @@ public class BaseWindowController {
 
     @FXML
     private void handleD20() {
-        Dice d20 = new Dice(20);
+        //Dice d20 = new Dice(20);
         DiceResult result = new DiceResult();
         if (advantage.isSelected()) {
             result = d20.rollAdv();
@@ -54,21 +56,71 @@ public class BaseWindowController {
             result = d20.rollDis();
         }
         else {
-            // Nothing selected.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            //alert.initOwner(DiceRollApp.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Person Selected");
-            alert.setContentText("Please select a person in the table.");
-
-            alert.showAndWait();
+            alertHandler("No Selection","No rolltype Selected","Please either normal, advantage or disadvantage");
         }
 
-        int modifier = Integer.parseInt(d20Modifier.getText());
-        //TODO: Add modifier to value --> in DiceResult and/or Dice class
+        doModifier(result, d20Modifier);
 
         outputTextField.setText(result.getText());
 
+    }
+
+    @FXML
+    private void handleD4() {
+        doRoll(d4, d4Number, d4Modifier);
+    }
+
+    private void doRoll(Dice dice, TextField nRolls, TextField modifier) {
+        DiceResult result = doBaseRoll(dice, nRolls);
+        result = doModifier(result, modifier);
+        outputTextField.setText(result.getText());
+    }
+
+    private DiceResult doBaseRoll(Dice dice, TextField nRolls) {
+        //do {
+            try {
+                int rolls = Integer.parseInt(nRolls.getText());
+                if (rolls > 0) {
+                    return dice.rollMultiple(rolls);
+                } else {
+                    throw new IllegalArgumentException();
+                }
+            } catch (Exception e) {
+                nRolls.selectAll();
+                alertHandler("Incorrect Number of Rolls", "The given value is incorrect", "Please enter a positive integer");
+                return new DiceResult();
+            }
+        //} while (true);
+    }
+
+    private DiceResult doModifier(DiceResult result, TextField modifier) {
+        //do {
+            if (modifier.getText() == null || modifier.getText().length() == 0) {
+                return result;
+            } else {
+                try {
+                    int mod = Integer.parseInt(modifier.getText());
+                    if (mod != 0) {
+                        result.addModifier(mod);
+                    }
+                    return result;
+                } catch (Exception e) {
+                    modifier.selectAll();
+                    alertHandler("Incorrect Modifier", "The given modifier is incorrect", "Please enter an integer");
+                    return result;
+                }
+            }
+        //} while (true);
+    }
+
+    private void alertHandler(String title, String header, String context) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        //alert.initOwner(diceRollApp.getPrimaryStage());
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(context);
+
+        alert.showAndWait();
     }
 
 
