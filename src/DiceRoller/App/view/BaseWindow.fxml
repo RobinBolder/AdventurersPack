@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,50 +12,31 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DiceRoller.App.view.BaseWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DiceRoller.App.view.BaseWindowController">
    <left>
-      <GridPane alignment="CENTER" prefWidth="270.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="120.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="198.0" minHeight="10.0" prefHeight="196.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="198.0" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="198.0" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="198.0" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="198.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="198.0" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="198.0" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="273.0" minHeight="10.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label alignment="CENTER" text="Number of dice" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Label alignment="CENTER" text="Roll" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <Label alignment="CENTER" text="Modifier" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#handleD20" text="d20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" onAction="#handleD4" text="d4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="d4Modifier" alignment="CENTER" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
-               </GridPane.margin>
-               <padding>
-                  <Insets left="5.0" right="5.0" />
-               </padding>
-            </TextField>
-            <TextField fx:id="d20Modifier" alignment="CENTER" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <padding>
-                  <Insets left="5.0" right="5.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="d4Number" alignment="CENTER" promptText="Number of dice" text="1" GridPane.rowIndex="2">
-               <padding>
-                  <Insets left="5.0" right="5.0" />
-               </padding>
-               <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
-               </GridPane.margin>
-            </TextField>
+            <Label alignment="CENTER" text="Result" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
             <VBox alignment="CENTER_LEFT" maxHeight="80.0" maxWidth="210.0" prefHeight="80.0" prefWidth="120.0" spacing="5.0" GridPane.rowIndex="1">
                <children>
                   <RadioButton fx:id="advantage" mnemonicParsing="false" text="Advantage" />
@@ -65,17 +47,170 @@
                   <Insets left="5.0" right="5.0" />
                </padding>
             </VBox>
+            <TextField fx:id="d4Number" alignment="CENTER" promptText="Number of dice" text="1" GridPane.rowIndex="2">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d6Number" alignment="CENTER" layoutX="15.0" layoutY="119.0" promptText="Number of dice" text="1" GridPane.rowIndex="3">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d8Number" alignment="CENTER" layoutX="15.0" layoutY="189.0" promptText="Number of dice" text="1" GridPane.rowIndex="4">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d10Number" alignment="CENTER" layoutX="15.0" layoutY="187.0" promptText="Number of dice" text="1" GridPane.rowIndex="5">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d12Number" alignment="CENTER" layoutX="15.0" layoutY="293.0" promptText="Number of dice" text="1" GridPane.rowIndex="6">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d100Number" alignment="CENTER" layoutX="15.0" layoutY="277.0" promptText="Number of dice" text="1" GridPane.rowIndex="7">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="dOtherNumber" alignment="CENTER" layoutX="15.0" layoutY="341.0" promptText="Number of dice" text="1" GridPane.rowIndex="8">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#handleD20" text="d20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#handleD4" text="d4" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button layoutX="138.0" layoutY="107.0" mnemonicParsing="false" onAction="#handleD6" text="d6" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button layoutX="138.0" layoutY="179.0" mnemonicParsing="false" onAction="#handleD8" text="d8" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Button>
+            <Button layoutX="138.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleD10" text="d10" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button layoutX="135.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleD12" text="d12" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button layoutX="135.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleD100" text="d100" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="d20Modifier" alignment="CENTER" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d4Modifier" alignment="CENTER" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </TextField>
+            <TextField fx:id="d6Modifier" alignment="CENTER" layoutX="185.0" layoutY="112.0" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d8Modifier" alignment="CENTER" layoutX="185.0" layoutY="177.0" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d10Modifier" alignment="CENTER" layoutX="185.0" layoutY="227.0" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d12Modifier" alignment="CENTER" layoutX="185.0" layoutY="278.0" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="d100Modifier" alignment="CENTER" layoutX="185.0" layoutY="277.0" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="dOtherModifier" alignment="CENTER" layoutX="185.0" layoutY="328.0" promptText="Modifier" text="0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" />
+               </GridPane.margin>
+            </TextField>
+            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <children>
+                  <TextField fx:id="dOtherSides" alignment="CENTER" promptText="sides">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#handleDOther" text="roll" />
+               </children>
+            </VBox>
+            <Label fx:id="d20Result" alignment="CENTER" layoutX="311.0" layoutY="12.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="d4Result" alignment="CENTER" layoutX="311.0" layoutY="62.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="d6Result" alignment="CENTER" layoutX="311.0" layoutY="121.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="d8Result" alignment="CENTER" layoutX="311.0" layoutY="160.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Label fx:id="d10Result" alignment="CENTER" layoutX="311.0" layoutY="199.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Label fx:id="d12Result" alignment="CENTER" layoutX="311.0" layoutY="240.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Label fx:id="d100Result" alignment="CENTER" layoutX="311.0" layoutY="280.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Label fx:id="dOtherResult" alignment="CENTER" layoutX="311.0" layoutY="318.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
          </children>
       </GridPane>
    </left>
    <center>
-      <Label fx:id="outputTextField" alignment="CENTER" contentDisplay="CENTER" text="Label" wrapText="true" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </Label>
+      <ScrollPane fx:id="scroll" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <Label fx:id="outputTextField" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Label">
+               <padding>
+                  <Insets left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+         </content>
+      </ScrollPane>
    </center>
 </BorderPane>
