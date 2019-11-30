@@ -6,7 +6,7 @@ import java.util.Random;
  * Class allowing you to create a dice with a certain number of sides and simulate the results of rolling it
  *
  * @author Robin Bolder
- * @version 1.1
+ * @version 1.2
  */
 public class Dice {
     private int sides;
@@ -60,20 +60,27 @@ public class Dice {
      * @since 1.0
      */
     public DiceResult rollAdv() {
-        int total;
+        int max;
+        DiceResult output;
         DiceResult result1 = roll();
         DiceResult result2 = roll();
 
         if (result1.getTotal() > result2.getTotal()) {
-            total = result1.getTotal();
+            max = result1.getTotal();
+            output = result1;
+            output.add(result2);
         }
         else {
-            total = result2.getTotal();
+            max = result2.getTotal();
+            output = result2;
+            output.add(result1);
         }
         String resultString = ("You rolled a d" + sides + " with advantage and got " +
                 result1.getTotal() + " and " + result2.getTotal() + ";\n" +
-                "The result therefore is: " + total);
-        return new DiceResult(total, resultString);
+                "The result therefore is: " + max);
+        output.setTotal(max);
+        output.setText(resultString);
+        return output;
     }
 
     /**
@@ -84,20 +91,27 @@ public class Dice {
      * @since 1.0
      */
     public DiceResult rollDis() {
-        int total;
+        int min;
+        DiceResult output;
         DiceResult result1 = roll();
         DiceResult result2 = roll();
 
         if (result1.getTotal() < result2.getTotal()) {
-            total = result1.getTotal();
+            min = result1.getTotal();
+            output = result1;
+            output.add(result2);
         }
         else {
-            total = result2.getTotal();
+            min = result2.getTotal();
+            output = result2;
+            output.add(result1);
         }
         String resultString = ("You rolled a d" + sides + " with disadvantage and got " +
                 result1.getTotal() + " and " + result2.getTotal() + ";\n" +
-                "The result therefore is: " + total);
-        return new DiceResult(total, resultString);
+                "The result therefore is: " + min);
+        output.setTotal(min);
+        output.setText(resultString);
+        return output;
     }
 
     /**
@@ -117,15 +131,18 @@ public class Dice {
 
         StringBuilder sb = new StringBuilder();
         DiceResult tmp;
-        int total = 0;
+        DiceResult total = new DiceResult();
+        //int total = 0;
         sb.append("You rolled " + n + " d" + sides + "'s\n");
         for (int i = 0; i < n; i++) {
             tmp = roll();
-            total += tmp.getTotal();
+            total.add(tmp);
+            //total += tmp.getTotal();
             sb.append("You rolled a " + tmp.getTotal() + " on dice number " + (i+1) + "\n");
         }
-        sb.append("Your total result is " + total);
-        String text = sb.toString();
-        return new DiceResult(total,text);
+        sb.append("Your total result is " + total.getTotal());
+        //String text = sb.toString();
+        total.setText(sb.toString());
+        return total;//new DiceResult(total,text);
     }
 }
