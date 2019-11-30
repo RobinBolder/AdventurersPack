@@ -10,6 +10,7 @@ Step 3 is a complete DM screen/campaign management tool
 ---------------------------------------------------------------------
 
 ## Current status:
-Step 1: Initial command-line application working 
+Step 1: Initial command-line application working;
+        Basic GUI working as well
 
-Next ToDo: Build GUI
+Step 2: Started implementing a basic stat sheet, will slowly start building additional functionality from there
